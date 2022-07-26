@@ -90,12 +90,12 @@ $title = 'guru';
                                         foreach($data as $row){
                                         ?>
                                         <tr>
-                                            <td><?= $row['nip']; ?></td>
-                                            <td><?= $row['kd_mp']; ?></td>
-                                            <td><?= $row['nama_guru']; ?></td>
-                                            <td><?= $row['alamat'];?></td>
-                                            <td><?= $row['jenis_kelamin']; ?></td>
-                                            <td><?= $row['agama']; ?></td>
+                                            <td><?php echo $row['nip']; ?></td>
+                                            <td><?php echo $row['kd_mp']; ?></td>
+                                            <td><?php echo $row['nama_guru']; ?></td>
+                                            <td><?php echo $row['alamat'];?></td>
+                                            <td><?php echo $row['jenis_kelamin']; ?></td>
+                                            <td><?php echo $row['agama']; ?></td>
                                             <td>
                                                 <!-- a href -->
                                                 <a href="guru-edit.php?nip=<?= $row['nip']?>" class="btn btn-success btn-circle btn-sm">
