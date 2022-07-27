@@ -1,22 +1,39 @@
 <?php 
 include_once("../functions.php");
-$title = 'guru';
-if(isset($_POST['btn-simpan'])){
-     $nip           = $_POST['nip'];
-     $kode_mp       = $_POST['kd_mp'];
-     $nama_guru     = $_POST['nama_guru'];
-     $alamat        = $_POST['alamat'];
-     $jenis_kelamin = $_POST['jenis_kelamin'];
-     $agama         = $_POST['agama'];
+$title = 'nilai';
 
-    $query = "INSERT INTO guru VALUES ('$nip','$kode_mp','$nama_guru','$alamat','$jenis_kelamin','$agama')";
-     $execute = bisa($con,$query);
-     if($execute == 1){
-         header('location: guru.php');   
-     }else{
-         echo "Gagal Tambah Data";
-     }
- }
+$kd_mp = $_GET['kd_mp'];
+
+$query = "SELECT * FROM mata_pelajaran where kd_mp = '$kd_mp'";
+$ubah =  ambilsatubaris($con, $query);
+
+if(isset($_POST['btn-ubah'])){
+    $nis    = $_POST['nis'];
+       $kd_mp  = $_POST['kd_mp'];
+       $semester = $_POST['semester'];
+       $nilai  = $_POST['nilai'];
+       
+       if ($_POST['nilai'] >= 88 && $_POST['nilai'] <= 100) {
+       $predikat = 'A';
+       } else if ($_POST['nilai'] >= 77 && $_POST['nilai'] <= 87) {
+        $predikat = 'B';
+       } else if ($_POST['nilai'] >= 60 && $_POST['nilai'] <= 76) {
+       $predikat = 'C';
+       }
+       else {
+       $predikat = 'D';
+       }
+       
+
+   $query = "INSERT INTO nilai VALUES ('$nis', '$kd_mp', '$semester', '$nilai', '$predikat')";
+    $execute = bisa($con,$query);
+
+    if($execute == 1){
+        header('location: tampil-nilai.php');   
+    }else{
+        echo "Gagal Tambah Data";
+    }
+}
 
 
 ?>
@@ -31,7 +48,7 @@ if(isset($_POST['btn-simpan'])){
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Guru</title>
+    <title>Mata Pelajaran</title>
 
     <!-- Custom fonts for this template-->
     <link href="../assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -74,7 +91,7 @@ if(isset($_POST['btn-simpan'])){
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Tambah Guru</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Edit Nilai</h1>
 
                     <!-- data table siswa -->
                       <!-- DataTales Example -->
@@ -86,51 +103,23 @@ if(isset($_POST['btn-simpan'])){
                         <div class="card-body">
                              <form method="post" action="">
                     <div class="form-group">
-                        <label>NIP</label>
-                        <input type="text" name="nip" class="form-control">
+                        <label>Mata Pelajaran</label>
+                        <input type="text" name="nama_mp" class="form-control" value="<?= $ubah['nama_mp'];?>" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Kode MP</label>
-                    <select name="kd_mp" class="form-control" required>
-		            <option value="">Mata Pelajaran</option>
-		            <?php
-                        $dataPelajaran=getListPelajaran();
-                        foreach($dataPelajaran as $data){
-                            echo "<option value=\"".$data["kd_mp"]."\">".$data["nama_mp"]."</option>";
-                        }
-                    ?>
-		            </select>
+                        <label>Guru</label>
+                        <input type="text" name="nama_guru" class="form-control" value="<?= $ubah['nama_guru'];?>" readonly>
                     </div>
                     <div class="form-group">
-                        <label>Nama Lengkap</label>
-                        <input type="text" name="nama_guru" class="form-control">
+                        <label>Nilai</label>
+                        <input type="text" name="nilai" class="form-control" value="<?= $ubah['nilai'];?>">
                     </div>
                     <div class="form-group">
-                        <label>Alamat</label>
-                        <textarea name="alamat" class="form-control"></textarea>
-                    </div>
-                     <div class="form-group">
-                        <label>Jenis Kelamin</label>
-                        <select name="jenis_kelamin" class="form-control">
-                            <option value="L">Laki-Laki</option>
-                            <option value="P">Perempuan</option>
-                        </select>
-                    <div class="form-group">
-                        <label>Agama</label>
-                        <select name="agama" class="form-control">
-                            <option value="ISLAM">ISLAM</option>
-                            <option value="PROTESTAN">PROTESTAN</option>
-                            <option value="KATOLIK">KATOLIK</option>
-                            <option value="HINDU">HINDU</option>
-                            <option value="BUDHA">BUDHA</option>
-                             <option value="KONGHUCU">KONGHUCU</option>
-                            <option value="LAINNYA">LAINNYA</option>
-                        </select>
-                    </div>
-                        
+                        <label>Predikat</label>
+                        <input type="text" name="predikat" class="form-control" value="<?= $ubah['predikat'];?>" readonly>
                     </div>
                     <div class="text-center">
-                        <button type="submit" name="btn-simpan" class="btn btn-primary tambah">Simpan</button>
+                        <button type="submit" name="btn-ubah" class="btn btn-primary tambah">Simpan</button>
                         <button type="reset" class="btn btn-danger">Reset</button>
                     </div>
                 </form>
@@ -157,26 +146,6 @@ if(isset($_POST['btn-simpan'])){
         <i class="fas fa-angle-up"></i>
     </a>
 
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- Bootstrap core JavaScript-->
     <script src="../assets/vendor/jquery/jquery.min.js"></script>
     <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -190,7 +159,7 @@ if(isset($_POST['btn-simpan'])){
     
     <!-- Page level plugins -->
     <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
-    <script src="../assetsvendor/datatables/dataTables.bootstrap4.min.js"></script>
+    <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
     <!-- Page level custom scripts -->
     <script src="../assets/js/demo/datatables-demo.js"></script>
