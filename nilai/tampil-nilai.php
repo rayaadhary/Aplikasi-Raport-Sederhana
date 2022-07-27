@@ -110,7 +110,7 @@ if($db->connect_errno==0){
             <tr>
                 <td><?= $row['nama_mp']; ?></td>
                 <td><?= $row['nama_guru'] ?></td>
-                <td><?= $row['semester']?></td>
+                <td td.dt-center><?= $row['semester']?></td>
                 <td><?= $row['nilai']; ?></td>
                 <td><?= $row['predikat']; ?></td>
                 <td>

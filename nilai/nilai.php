@@ -82,7 +82,7 @@ $title = 'nilai';
                                             <th>Tanggal Lahir</th>
                                             <th>J K </th>
                                             <th>Agama</th>
-                                            <th>Wali</th>
+                                            <th>Orang Tua</th>
                                             <th>Asal Sekolah</th>
                                             <th>Nilai</th>
                                         </tr>

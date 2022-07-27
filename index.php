@@ -129,10 +129,7 @@ $title = 'dashboard';
                             </div>
                         </div>
                      </div>
-                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                     <a href="backup.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                                class="fas fa-download fa-sm text-white-50"></i> Backup Database</a>
-                    </div>
+                     
                 </div>
 
             <!-- End of Main Content -->
@@ -140,6 +137,10 @@ $title = 'dashboard';
             <!-- Footer -->
             <!-- End of Footer -->
                 </div>
+                <div class="d-flex justify-content-end mb-4 mr-3">
+                     <a href="backup.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Backup Database</a>
+                    </div>
             <?php include 'layout/footer.php'; ?>
             
         </div>
