@@ -72,6 +72,7 @@ $content_ .= "-- Generating Time : " . date("M d") . ", " . date("Y") . " at " .
 $content_ .= $content;
 
 //save the file
+date_default_timezone_set("Asia/Jakarta");
 $backup_file_name = $db_name . " " . date("Y-m-d_H-i") . ".sql";
 $fp = fopen($backup_file_name, 'w+');
 $result = fwrite($fp, $content_);

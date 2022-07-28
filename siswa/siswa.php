@@ -77,6 +77,7 @@ $title = 'siswa';
                                         <tr>
                                             <th>NIS</th>
                                             <th>Nama</th>
+                                            <th>Alamat</th>
                                             <th>Kelas</th>
                                             <th>Tanggal Lahir</th>
                                             <th>J K </th>
@@ -94,6 +95,7 @@ $title = 'siswa';
                                         <tr>
                                             <td><?= $row['nis']; ?></td>
                                             <td><?= $row['nama']; ?></td>
+                                            <td><?= $row['alamat']; ?></td>
                                             <td><?= $row['kelas']; ?></td>
                                             <td><?= $row['tanggal_lahir'];?></td>
                                             <td><?= $row['jenis_kelamin']; ?></td>

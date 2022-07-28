@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 27, 2022 at 03:55 PM
+-- Generation Time: Jul 28, 2022 at 06:18 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.1
 
@@ -140,7 +140,8 @@ INSERT INTO `nilai` (`nis`, `kd_mp`, `semester`, `nilai`, `predikat`) VALUES
 ('77288132', 8, '1', 66, 'C'),
 ('77288132', 9, '1', 72, 'C'),
 ('77288132', 10, '1', 67, 'C'),
-('77288132', 11, '1', 70, 'C');
+('77288132', 11, '1', 70, 'C'),
+('87528528', 1, '1', 81, 'B');
 
 -- --------------------------------------------------------
 
@@ -169,7 +170,7 @@ INSERT INTO `siswa` (`nis`, `nama`, `alamat`, `kelas`, `tanggal_lahir`, `jenis_k
 ('77241560', 'alika', 'Jl. Garut Tasik', 'VII', '2007-07-17', 'P', 'ISLAM', 'Tono', 'SDN Ngamplang Sari 4'),
 ('77287165', 'siti', 'Jl. Margalaksana', 'VII', '2007-08-10', 'P', 'ISLAM', 'Jakaria', 'SDN Ngamplang Sari 4'),
 ('77288132', 'adi', 'Jl. Tarogong', 'VII', '2008-08-18', 'L', 'ISLAM', 'Hasan', 'SDN Ngamplang Sari 4'),
-('87528528', 'Daffa', 'Balebale', 'VII', '2022-07-02', 'L', 'ISLAM', 'Orang Tua tapi yang botol', 'SDN Balebale');
+('87528528', 'Daffa', 'Baleendah', 'VII', '2022-07-02', 'L', 'ISLAM', 'Orang Tua tapi yang botol', 'SDN Balebale');
 
 --
 -- Indexes for dumped tables

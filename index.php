@@ -25,6 +25,12 @@ $title = 'dashboard';
     <!-- Custom styles for this template-->
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">
 
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 </head>
 
 <body id="page-top">
@@ -138,7 +144,7 @@ $title = 'dashboard';
             <!-- End of Footer -->
                 </div>
                 <div class="d-flex justify-content-end mb-4 mr-3">
-                     <a href="backup.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                     <a href="backup.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="backup"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Backup Database</a>
                     </div>
             <?php include 'layout/footer.php'; ?>
@@ -171,6 +177,9 @@ $title = 'dashboard';
     <script src="assets/js/demo/chart-area-demo.js"></script>
     <script src="assets/js/demo/chart-pie-demo.js"></script>
 
+    <script src="assets/js/script.js"></script>
+
+   
 </body>
 
 </html>

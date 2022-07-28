@@ -2,16 +2,18 @@
 include_once("../functions.php");
 $title = 'nilai';
 
-$kd_mp = $_GET['kd_mp'];
+$nis = $_GET['nis'];
 
-$query = "SELECT * FROM mata_pelajaran where kd_mp = '$kd_mp'";
+$query = "SELECT siswa.nis, nilai.kd_mp, nama_mp, siswa.nama, nilai  FROM nilai, siswa, mata_pelajaran 
+        WHERE siswa.nis = nilai.nis 
+        AND nilai.kd_mp = mata_pelajaran.kd_mp AND nilai.nis= '$nis'";
+
 $ubah =  ambilsatubaris($con, $query);
+$kd_mp = $ubah['kd_mp'];
 
 if(isset($_POST['btn-ubah'])){
-    $nis    = $_POST['nis'];
-       $kd_mp  = $_POST['kd_mp'];
-       $semester = $_POST['semester'];
-       $nilai  = $_POST['nilai'];
+        
+        $nilai  = $_POST['nilai'];
        
        if ($_POST['nilai'] >= 88 && $_POST['nilai'] <= 100) {
        $predikat = 'A';
@@ -24,15 +26,14 @@ if(isset($_POST['btn-ubah'])){
        $predikat = 'D';
        }
        
+  $query = "UPDATE nilai SET nilai='$nilai', predikat='$predikat' WHERE nis='$nis' AND kd_mp='$kd_mp'";
 
-   $query = "INSERT INTO nilai VALUES ('$nis', '$kd_mp', '$semester', '$nilai', '$predikat')";
     $execute = bisa($con,$query);
-
-    if($execute == 1){
-        header('location: tampil-nilai.php');   
-    }else{
-        echo "Gagal Tambah Data";
-    }
+     if($execute == 1){
+        header('location: nilai.php');
+     }else{
+         echo "Gagal Tambah Data";
+     }
 }
 
 
@@ -101,22 +102,18 @@ if(isset($_POST['btn-ubah'])){
                             <a href="javascript:void(0)" onclick="window.history.back();" class="btn btn-primary box-title"><i class="fa fa-arrow-left fa-fw"></i> Kembali</a>
                         </div>
                         <div class="card-body">
-                             <form method="post" action="">
+                    <form method="post" action="">
                     <div class="form-group">
-                        <label>Mata Pelajaran</label>
-                        <input type="text" name="nama_mp" class="form-control" value="<?= $ubah['nama_mp'];?>" readonly>
+                        <label>Nama Siswa</label>
+                        <input type="text" name="nama" id="" class="form-control" value="<?= $ubah['nama'] ?>" readonly>
                     </div>
-                    <div class="form-group">
-                        <label>Guru</label>
-                        <input type="text" name="nama_guru" class="form-control" value="<?= $ubah['nama_guru'];?>" readonly>
+                   <div class="form-group">
+                        <label>Mata Pelajaran</label>
+                        <input type="text" name="kd_mp" id="" class="form-control" value="<?= $ubah['nama_mp'] ?>" readonly>
                     </div>
                     <div class="form-group">
                         <label>Nilai</label>
-                        <input type="text" name="nilai" class="form-control" value="<?= $ubah['nilai'];?>">
-                    </div>
-                    <div class="form-group">
-                        <label>Predikat</label>
-                        <input type="text" name="predikat" class="form-control" value="<?= $ubah['predikat'];?>" readonly>
+                        <input type="number" name="nilai" class="form-control" value="<?= $ubah['nilai']?>">
                     </div>
                     <div class="text-center">
                         <button type="submit" name="btn-ubah" class="btn btn-primary tambah">Simpan</button>

@@ -18,14 +18,15 @@ $('.hapus').on('click', function(e){
 });
 
 
-$('.tambah-data').on('click', function(e){
+        $('#backup').on('click', function(e){
 	e.preventDefault();
 	var getLink = $(this).attr('href');
 
 	Swal.fire({
-		icon: 'success',
-		title: 'Berhasil menambahkan data',
-		showConfirmButton: false
+  title: 'Yakin ingin mencadangkan database?',
+  showDenyButton: true,
+  confirmButtonText: 'Yakin',
+  denyButtonText: `Tidak`,
 	}).then((result) => {
 	  if (result.value) {
 	    window.location.href = getLink;
