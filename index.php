@@ -119,7 +119,7 @@ $title = 'dashboard';
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                Nilai (Siswa)</div>
+                                                Nilai Rerata (Siswa)</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">
                                             <?php
                                                 $datanilai = getList("SELECT avg(nilai) as nilaiRata FROM nilai");
@@ -130,7 +130,7 @@ $title = 'dashboard';
                                             </div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+                                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
