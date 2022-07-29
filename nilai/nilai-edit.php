@@ -4,12 +4,14 @@ $title = 'nilai';
 
 $nis = $_GET['nis'];
 
+$kd_mp = $_GET['kd_mp'];
+
 $query = "SELECT siswa.nis, nilai.kd_mp, nama_mp, siswa.nama, nilai  FROM nilai, siswa, mata_pelajaran 
         WHERE siswa.nis = nilai.nis 
-        AND nilai.kd_mp = mata_pelajaran.kd_mp AND nilai.nis= '$nis'";
+        AND nilai.kd_mp = mata_pelajaran.kd_mp 
+		AND nilai.nis= '$nis' AND nilai.kd_mp= '$kd_mp'";
 
 $ubah =  ambilsatubaris($con, $query);
-$kd_mp = $ubah['kd_mp'];
 
 if(isset($_POST['btn-ubah'])){
         

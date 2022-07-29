@@ -18,7 +18,7 @@ $('.hapus').on('click', function(e){
 });
 
 
-        $('#backup').on('click', function(e){
+$('#backup').on('click', function(e){
 	e.preventDefault();
 	var getLink = $(this).attr('href');
 

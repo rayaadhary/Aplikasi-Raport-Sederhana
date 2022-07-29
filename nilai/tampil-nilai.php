@@ -85,7 +85,7 @@ rel="stylesheet">
 <?php
 $db=dbConnect();
 if($db->connect_errno==0){
-	$sql="SELECT siswa.nis, nama_mp, nama_guru, semester,nilai, predikat FROM nilai, mata_pelajaran, siswa, guru
+	$sql="SELECT siswa.nis, nilai.kd_mp, nama_mp, nama_guru, semester,nilai, predikat FROM nilai, mata_pelajaran, siswa, guru
                             WHERE nilai.kd_mp = mata_pelajaran.kd_mp
                             AND mata_pelajaran.kd_mp = guru.kd_mp
                             AND siswa.nis = $nis AND  nilai.nis = $nis";
@@ -110,11 +110,11 @@ if($db->connect_errno==0){
             <tr>
                 <td><?= $row['nama_mp']; ?></td>
                 <td><?= $row['nama_guru'] ?></td>
-                <td td.dt-center><?= $row['semester']?></td>
+                <td><?= $row['semester']?></td>
                 <td><?= $row['nilai']; ?></td>
                 <td><?= $row['predikat']; ?></td>
                 <td>
-                    <a href="nilai-edit.php?nis=<?= $row['nis']?>" class="btn btn-info btn-circle btn-sm">
+                    <a href="nilai-edit.php?nis=<?= $row['nis'];?>&kd_mp=<?=$row['kd_mp'];?>" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-edit"></i>
                     </a>
                     <a href="nilai-hapus.php?nis=<?= $row['nis'];?>" class="btn btn-danger btn-circle btn-sm hapus">
