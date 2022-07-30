@@ -7,7 +7,21 @@ if(isset($_POST['btn-simpan'])){
         $kd_mp  = $_POST['kd_mp'];
         $semester = $_POST['semester'];
         $nilai  = $_POST['nilai'];
-        
+
+        $pesansalah = "";
+
+        $periksa = mysqli_query($con, "SELECT * FROM nilai WHERE nis='$nis' AND kd_mp='$kd_mp'");
+       
+        if($periksa -> num_rows > 0)
+        {
+            $pesansalah = "Data nilai sudah ada";
+            ?>
+        <div class="alert alert-danger" role="alert">
+        <?= $pesansalah ?>
+        </div>
+        <?php
+        }
+
         if ($_POST['nilai'] >= 88 && $_POST['nilai'] <= 100) {
         $predikat = 'A';
         } else if ($_POST['nilai'] >= 77 && $_POST['nilai'] <= 87) {
@@ -20,18 +34,20 @@ if(isset($_POST['btn-simpan'])){
         }
         
 
+    if ($pesansalah = "")
+    {    
     $query = "INSERT INTO nilai VALUES ('$nis', '$kd_mp', '$semester', '$nilai', '$predikat')";
      $execute = bisa($con,$query);
 
      if($execute == 1){
-         header('location: nilai.php');   
+          header('location: nilai.php');   
      }else{
          echo "Gagal Tambah Data";
      }
+    }
  }
-
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
