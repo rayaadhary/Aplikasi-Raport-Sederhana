@@ -117,7 +117,7 @@ if($db->connect_errno==0){
                     <a href="nilai-edit.php?nis=<?= $row['nis'];?>&kd_mp=<?=$row['kd_mp'];?>" class="btn btn-info btn-circle btn-sm">
                     <i class="fas fa-edit"></i>
                     </a>
-                    <a href="nilai-hapus.php?nis=<?= $row['nis'];?>" class="btn btn-danger btn-circle btn-sm hapus">
+                    <a href="nilai-hapus.php?nis=<?= $row['nis'];?>&kd_mp=<?=$row['kd_mp'];?>" class="btn btn-danger btn-circle btn-sm hapus">
                     <i class="fas fa-trash"></i>
                     </a>
                 </td>

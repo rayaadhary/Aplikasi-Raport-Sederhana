@@ -2,11 +2,7 @@
 include_once("../functions.php");
 
 $nis = $_GET['nis'];
-
-$query = mysqli_query($con,"SELECT * FROM nilai where nis='$nis'");
-
-$data = mysqli_fetch_array($query);
-$kd_mp = $data['kd_mp'];
+$kd_mp = $_GET['kd_mp'];
 
 $execute = bisa($con, "DELETE FROM nilai WHERE nis='$nis' AND kd_mp='$kd_mp'");
 
