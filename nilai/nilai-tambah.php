@@ -1,28 +1,15 @@
-<?php 
+<?php
 include_once("../functions.php");
 $title = 'nilai';
-
-if(isset($_POST['btn-simpan'])){
-     $nis    = $_POST['nis'];
+if(isset($_POST["btn-simpan"])){
+	if($con->connect_errno==0){
+		// Bersihkan data
+	  $nis    = $_POST['nis'];
         $kd_mp  = $_POST['kd_mp'];
         $semester = $_POST['semester'];
         $nilai  = $_POST['nilai'];
 
-        $pesansalah = "";
-
-        $periksa = mysqli_query($con, "SELECT * FROM nilai WHERE nis='$nis' AND kd_mp='$kd_mp'");
-       
-        if($periksa -> num_rows > 0)
-        {
-            $pesansalah = "Data nilai sudah ada";
-            ?>
-        <div class="alert alert-danger" role="alert">
-        <?= $pesansalah ?>
-        </div>
-        <?php
-        }
-
-        if ($_POST['nilai'] >= 88 && $_POST['nilai'] <= 100) {
+           if ($_POST['nilai'] >= 88 && $_POST['nilai'] <= 100) {
         $predikat = 'A';
         } else if ($_POST['nilai'] >= 77 && $_POST['nilai'] <= 87) {
          $predikat = 'B';
@@ -33,19 +20,59 @@ if(isset($_POST['btn-simpan'])){
         $predikat = 'D';
         }
         
+		// validasi
+		$pesansalah="";
 
-    if ($pesansalah = "")
-    {    
-    $query = "INSERT INTO nilai VALUES ('$nis', '$kd_mp', '$semester', '$nilai', '$predikat')";
-     $execute = bisa($con,$query);
+          $periksa = mysqli_query($con, "SELECT * FROM nilai WHERE nis='$nis' AND kd_mp='$kd_mp'");
+       
+        if($periksa -> num_rows > 0)
+		$pesansalah.="Data nilai sudah ada.<br>";
 
-     if($execute == 1){
-          header('location: nilai.php');   
-     }else{
-         echo "Gagal Tambah Data";
-     }
-    }
- }
+		if($pesansalah==""){
+			?>
+			<div class="alert alert-primary" role="alert">
+			Tidak terjadi kesalahan. Semua data valid. Data akan disimpan ke database
+			</div>
+		<?php
+		// script database
+		// Susun query insert
+		$sql="INSERT INTO nilai VALUES ('$nis', '$kd_mp', '$semester', '$nilai', '$predikat')";
+		// Eksekusi query insert
+		$res=$con->query($sql);
+		if($res){
+			if($con->affected_rows>0){ // jika ada penambahan data
+				?>
+				<div class="alert alert-primary d-flex align-items-center" role="alert">
+				<svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+				<div>
+				Data berhasil disimpan.
+				</div>
+				</div>
+				<br>
+				<?php
+                header('location: nilai.php');
+			}
+		}
+		else{
+			?>
+			Data gagal disimpan karena data nilai mungkin sudah ada.<br>
+			<a href=javascript:history.back(); class="btn btn-primary">Kembali</a>
+			<?php
+		}
+		}
+		else{
+		?>
+            <div class="alert alert-danger" role="alert">
+            <?= $pesansalah ?>
+            </div>
+            <?php
+		}
+        ?>
+        <?php
+	}
+	else
+		echo "Gagal koneksi".(DEVELOPMENT?" : ".$db->connect_error:"")."<br>";
+}
 ?>
 
 <!DOCTYPE html>
