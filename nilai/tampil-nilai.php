@@ -59,7 +59,7 @@ rel="stylesheet">
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">Tampil Nilai</h1>
+                    <h1 class="h3 mb-4 text-gray-800">Nilai Siswa</h1>
 
                     <div class="row mb-3 ">
                     <label class="col-sm-2 col-form-label">NIS</label>
